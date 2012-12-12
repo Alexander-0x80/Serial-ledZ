@@ -1,0 +1,28 @@
+<!doctype html>
+<html ng-app>
+    <head>
+        <meta charset="UTF-8">
+        <title>LED Matrix Controller</title>
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.3/angular.min.js"></script>
+        <script src="ledz.js"></script>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div ng-controller="MatrixCtrl">
+            <div id="pixelMatrix">
+                <div ng-repeat="pixel in pixels"
+                     ng-click="putPixel(pixel)"
+                     ng-class="{on:pixel.state}"
+                     class="pixel"
+                     style="color:{{pixel.color}}; background:{{pixel.color}}"
+                ></div>
+            </div>
+            <div id="colorPicker">
+                <div ng-repeat="colorbox in colors"
+                     ng-click="setColor(colorbox)"
+                     class="colorbox"
+                     style="background:{{colorbox.color}}"
+                ></div>
+            </div>
+    </body>
+</html>
