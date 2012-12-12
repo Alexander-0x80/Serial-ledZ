@@ -16,20 +16,20 @@ function MatrixCtrl($scope,$http) {
         {color:"white",     dec:255}
     ];
 
-    $scope.selected = $scope.colors[0];
+    var selected = $scope.colors[0];
 
     // Populate pixels array with OFF pixels
     $scope.pixels = Array(64);
     for (var i=0;i<$scope.pixels.length;++i) {
-        $scope.pixels[i] = {color: $scope.colors[0].color, dec:0, state: false};
+        $scope.pixels[i] = {color: selected.color, dec:0, state: false};
     }
 
     // Light the pixel on and post data to server
     $scope.putPixel = function(pixel) {
         // grey means pixel OFF
-        pixel.state = !($scope.selected.color === 'grey')
-        pixel.color = $scope.selected.color;
-        pixel.dec = $scope.selected.dec;
+        pixel.state = !(selected.color === 'grey')
+        pixel.color = selected.color;
+        pixel.dec = selected.dec;
 
         // Generate array of color values
         var colors = [pixel.dec for each(pixel in $scope.pixels)]
@@ -38,6 +38,6 @@ function MatrixCtrl($scope,$http) {
 
     // Change current selected color
     $scope.setColor = function(colorBox){
-        $scope.selected = colorBox;
+        selected = colorBox;
     }
 }
