@@ -36,8 +36,8 @@ function MatrixCtrl($scope,$http) {
         for (var i=0;i<$scope.pixels.length;i++) {
             colors[i] = $scope.pixels[i].dec;
         }
-        //var colors = [pixel.dec for each(pixel in $scope.pixels)];
-        $http.post("/test",{pixels:colors});
+        //var colors = [pixel.dec for each(pixel in $scope.pixels)]; (WTF Chrome ?!)
+        $http.post("/matrix",{pixels:colors});
     };
 
     // Change current selected color

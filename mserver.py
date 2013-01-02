@@ -11,14 +11,13 @@ except serial.SerialException:
     exit("Cannot open serial port")
 
 
-@app.post("/test")
+@app.post("/matrix")
 def test():
     data = bottle.request.json
     if data is not None:
         pixels = data["pixels"]
         for p in pixels:
             serial_port.write(chr(p))
-        #serial_port.write("*")
     else:
         print "DATA ERROR"
 
