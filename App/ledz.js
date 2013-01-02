@@ -27,13 +27,17 @@ function MatrixCtrl($scope,$http) {
     // Light the pixel on and post data to server
     $scope.putPixel = function(pixel) {
         // grey means pixel OFF
-        pixel.state = !(selected.color === 'grey')
+        pixel.state = !(selected.color === 'grey');
         pixel.color = selected.color;
         pixel.dec = selected.dec;
 
         // Generate array of color values
-        var colors = [pixel.dec for each(pixel in $scope.pixels)]
-        $http.post("/test",{pixels:uneval(colors)})
+        var colors = Array(64);
+        for (var i=0;i<$scope.pixels.length;i++) {
+            colors[i] = $scope.pixels[i].dec;
+        }
+        //var colors = [pixel.dec for each(pixel in $scope.pixels)];
+        $http.post("/test",{pixels:colors});
     };
 
     // Change current selected color
