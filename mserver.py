@@ -1,7 +1,8 @@
 import bottle
 import serial
+import sys
 
-SERIAL_PORT = '/dev/ttyUSB1'
+SERIAL_PORT = sys.argv[1]
 DEBUG = False
 
 app = bottle.Bottle()
