@@ -2,6 +2,9 @@ import bottle
 import serial
 import sys
 
+if len(sys.argv) < 2:
+    exit("No port is given!")
+
 SERIAL_PORT = sys.argv[1]
 DEBUG = False
 
