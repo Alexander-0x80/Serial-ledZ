@@ -1,7 +1,8 @@
 import bottle
 import serial
 
-SERIAL_PORT = '/dev/ttyUSB0'
+SERIAL_PORT = '/dev/ttyUSB1'
+DEBUG = False
 
 app = bottle.Bottle()
 
@@ -26,4 +27,4 @@ def test():
 def server_static(filepath):
     return bottle.static_file(filepath, root='App')
 
-app.run(host="localhost",port=80,debug=True)
+app.run(host="0.0.0.0",port=8080,debug=DEBUG)
