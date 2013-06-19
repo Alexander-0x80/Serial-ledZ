@@ -11,9 +11,14 @@ DEBUG = False
 app = bottle.Bottle()
 
 try:
-    serial_port = serial.Serial(SERIAL_PORT,9600)
+    serial_port = serial.Serial(SERIAL_PORT, 9600)
 except serial.SerialException:
     exit("Cannot open serial port")
+
+
+@app.route("/")
+def main():
+    return bottle.static_file("index.html", root="App")
 
 
 @app.post("/matrix")
@@ -21,8 +26,7 @@ def test():
     data = bottle.request.json
     if data is not None:
         pixels = data["pixels"]
-        for p in pixels:
-            serial_port.write(chr(p))
+        serial_port.write("".join([chr(p) for p in pixels]))
     else:
         print "DATA ERROR"
 
@@ -31,4 +35,4 @@ def test():
 def server_static(filepath):
     return bottle.static_file(filepath, root='App')
 
-app.run(host="0.0.0.0",port=8080,debug=DEBUG)
+app.run(host="0.0.0.0", port=8080, debug=DEBUG)

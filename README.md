@@ -42,7 +42,7 @@ You can add yourself to this group by running this command in terminal : `sudo u
 
 `python mserver.py /dev/ttyUSB0` (With your port)
 
-Test in browser : `http://localhost:8080/App/index.html`
+Test in browser : `http://localhost:8080/`
 
 
 
